@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.zengfanyu.aildtest">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".aidl.AIDLActivity"
+            android:process=":aidl_activity"/>
+        <service
+            android:name=".aidl.AIDLService"
+            android:process=":aidl_service">
+
+        </service>
+        <activity
+            android:name=".file.FileActivity"
+            android:process=":file_activity" />
+
+        <service
+            android:name=".messenger.MessengerService"
+            android:process=":messenger_service" />
+
+        <activity
+            android:name=".messenger.MessengerActivity"
+            android:process=":messenger_activity" />
+
+        <service
+            android:name=".socket.SocketServer"
+            android:process=":socket_service" />
+
+        <activity
+            android:name=".socket.SocketActivity"
+            android:process=":socket_activity" />
+
+        <service
+            android:name=".binderpool.BinderPoolService"
+            android:process=":binder_pool_service" />
+        <activity
+            android:name=".binderpool.BinderPoolActivity"
+            android:process=":binder_pool_activity" />
+
+
+    </application>
+
+</manifest>
