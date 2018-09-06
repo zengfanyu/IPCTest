@@ -56,6 +56,7 @@ public class AIDLService extends Service {
         public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
             mListenerList.register(listener);
 
+            //beginBroadcast 和 finishBroadcast 需要成对使用
             final int listenerCount = mListenerList.beginBroadcast();
             Log.i(Utils.TAG, "current listener size: " + listenerCount);
             mListenerList.finishBroadcast();

@@ -22,8 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".aidl.AIDLActivity"
-            android:process=":aidl_activity"/>
+        <activity
+            android:name=".aidl.AIDLActivity"
+            android:process=":aidl_activity" />
+
         <service
             android:name=".aidl.AIDLService"
             android:process=":aidl_service">
@@ -52,11 +54,21 @@
         <service
             android:name=".binderpool.BinderPoolService"
             android:process=":binder_pool_service" />
+
         <activity
             android:name=".binderpool.BinderPoolActivity"
             android:process=":binder_pool_activity" />
 
+        <activity
+            android:name=".contentprovider.ProviderActivity"
+            android:process=":provider_activity"
+            android:permission="com.zengfanyu.provider"/>
 
+        <provider
+            android:name=".contentprovider.BookProvider"
+            android:authorities="com.example.zengfanyu.BookProvider"
+            android:permission="com.zengfanyu.provider"
+            android:process=":book_provider" />
     </application>
 
 </manifest>

@@ -38,5 +38,11 @@
         android:layout_height="wrap_content"
         android:text="start_binder_pool activity" />
 
+    <Button
+        android:id="@+id/id_btn_start_provider_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start_provider activity" />
+
 
 </LinearLayout>

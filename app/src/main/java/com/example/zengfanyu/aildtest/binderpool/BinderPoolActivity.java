@@ -32,6 +32,7 @@ public class BinderPoolActivity extends Activity {
     }
 
     private void doWork() {
+        //bind service
         BinderPool binderPool = BinderPool.getInstance(this);
 
         IBinder securityBinder = binderPool.queryBinder(BinderPool.BINDER_SECURITY_CENTER);

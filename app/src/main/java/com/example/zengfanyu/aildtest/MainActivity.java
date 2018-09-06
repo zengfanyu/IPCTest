@@ -20,6 +20,7 @@ import android.widget.Button;
 import com.example.zengfanyu.aildtest.aidl.AIDLActivity;
 import com.example.zengfanyu.aildtest.aidl.AIDLService;
 import com.example.zengfanyu.aildtest.binderpool.BinderPoolActivity;
+import com.example.zengfanyu.aildtest.contentprovider.ProviderActivity;
 import com.example.zengfanyu.aildtest.file.FileActivity;
 import com.example.zengfanyu.aildtest.file.User;
 import com.example.zengfanyu.aildtest.messenger.MessengerActivity;
@@ -36,7 +37,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button mAIDLActivity, mPersistToFile, mBinderPoolActivity, mMessengerActivity, mSocketActivity;
+    Button mAIDLActivity, mPersistToFile, mBinderPoolActivity, mMessengerActivity, mSocketActivity, mProviderActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         mMessengerActivity = findViewById(R.id.id_btn_start_Messenger_activity);
         mSocketActivity = findViewById(R.id.id_btn_start_Socket_activity);
         mBinderPoolActivity = findViewById(R.id.id_btn_start_binder_pool_activity);
+        mProviderActivity = findViewById(R.id.id_btn_start_provider_activity);
 
         //通过 AIDL 的方式进行跨进程数据共享
         mAIDLActivity.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BinderPoolActivity.class);
+                startActivity(intent);
+            }
+        });
+        mProviderActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProviderActivity.class);
                 startActivity(intent);
             }
         });

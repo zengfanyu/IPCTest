@@ -49,9 +49,13 @@ public class AIDLActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aidl);
+        setupService();
+
+    }
+
+    private void setupService() {
         Intent intent = new Intent(this,AIDLService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-
     }
 
     private IBookManager mRemoteBookManager;
@@ -83,8 +87,7 @@ public class AIDLActivity extends Activity {
             //Binder 若意外死亡了，在此处可以进程重连
             Log.d(Utils.TAG, "onServiceDisconnected");
             mRemoteBookManager = null;
-            Intent intent = new Intent(AIDLActivity.this, AIDLService.class);
-            bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+            setupService();
         }
     };
 
