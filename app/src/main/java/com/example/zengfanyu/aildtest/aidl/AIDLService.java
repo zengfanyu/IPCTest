@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Parcel;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
@@ -42,6 +43,24 @@ public class AIDLService extends Service {
      * 需要返回给客户端使用的 Binder
      */
     private Binder mBinder = new IBookManager.Stub() {
+
+        @Override
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+
+            String packageName = null;
+            String[] packages = getPackageManager().getPackagesForUid(getCallingUid());
+            if (packages != null && packages.length > 0){
+                packageName = packages[0];
+            }
+            Log.i(Utils.TAG, "package name: " + packageName);
+            if (packageName == null || !packageName.startsWith("com.example.zengfanyu.aildtest.222")){
+                Log.e(Utils.TAG, "包名验证不通过，拒绝调用");
+
+                return false;
+            }
+            return super.onTransact(code, data, reply, flags);
+        }
+
         @Override
         public void addBook(Book book) throws RemoteException {
             mBookList.add(book);
@@ -77,8 +96,8 @@ public class AIDLService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mBookList.add(new Book(0, "Java"));
-        mBookList.add(new Book(1, "Android"));
+//        mBookList.add(new Book(0, "Java"));
+//        mBookList.add(new Book(1, "Android"));
         new Thread(new ServiceWorker()).start();
     }
 
